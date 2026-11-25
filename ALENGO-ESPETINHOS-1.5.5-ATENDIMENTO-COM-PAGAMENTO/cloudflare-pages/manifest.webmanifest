@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "ALENGO ESPETINHOS",
+  "short_name": "ALENGO",
+  "description": "Pedidos e comandas dos colaboradores do ALENGO ESPETINHOS.",
+  "start_url": "./?mode=remote",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121314",
+  "theme_color": "#121314",
+  "icons": [
+    { "src": "./icon.png", "sizes": "any", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

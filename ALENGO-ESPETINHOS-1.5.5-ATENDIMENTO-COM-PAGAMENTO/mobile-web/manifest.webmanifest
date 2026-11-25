@@ -1,0 +1,15 @@
+{
+  "id": "/mobile/",
+  "name": "ALENGO ESPETINHOS",
+  "short_name": "ALENGO",
+  "description": "Pedidos e comandas dos colaboradores do ALENGO ESPETINHOS.",
+  "start_url": "/mobile/",
+  "scope": "/mobile/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#121314",
+  "theme_color": "#121314",
+  "icons": [
+    { "src": "/mobile/icon.png", "sizes": "any", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
