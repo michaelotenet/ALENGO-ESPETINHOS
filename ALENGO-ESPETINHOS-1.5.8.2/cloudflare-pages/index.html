@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121314">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Alengo Espetinhos">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="Aplicativo de pedidos dos colaboradores do ALENGO ESPETINHOS.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon.png">
+  <link rel="icon" type="image/png" href="./icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>ALENGO ESPETINHOS</title>
+</head>
+<body>
+  <div id="app" aria-live="polite">
+    <header class="topbar">
+      <img src="./icon.png" alt="" class="brand-icon">
+      <div class="brand-copy"><strong>ALENGO ESPETINHOS</strong><span id="operator-label">CONECTAR AO CAIXA</span></div>
+      <button id="pwa-install" class="top-button hidden" type="button" aria-label="Instalar ALENGO ESPETINHOS">＋ Instalar</button>
+      <button id="top-home" class="top-button hidden" type="button">⌂ Início</button>
+    </header>
+    <main id="view" class="view"><div class="loading">Carregando aplicativo...</div></main>
+    <div id="toast" class="toast hidden" role="status"></div>
+  </div>
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

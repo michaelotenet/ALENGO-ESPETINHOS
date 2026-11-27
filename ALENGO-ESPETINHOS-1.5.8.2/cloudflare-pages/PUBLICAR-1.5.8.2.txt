@@ -1,0 +1,21 @@
+ALENGO ESPETINHOS — ATENDIMENTO WEB 1.5.8.2
+
+ORDEM RECOMENDADA DE ATUALIZAÇÃO
+1. Faça backup do banco do PDV Windows.
+2. No Supabase SQL Editor do projeto ALENGO, execute:
+   supabase/migrations/20261125000100_alengo_web_push_commands.sql
+   Este SQL amplia os tipos aceitos na fila autenticada para registrar e remover inscrições Push.
+3. Atualize o PDV Windows para a versão 1.5.8.2 e mantenha o computador ligado e conectado à internet.
+   O Windows cria a chave VAPID e protege a chave privada localmente com o armazenamento seguro do Electron/Windows.
+4. Publique TODO o conteúdo deste pacote na raiz do projeto Cloudflare Pages existente.
+5. No site, entre como operador, abra Notificações e escolha Ativar Push. Autorize as notificações neste aparelho.
+6. Teste os cinco toques com o site aberto. Depois minimize/bloqueie o aparelho e marque um pedido como parcialmente pronto e completamente pronto no Windows.
+
+IMPORTANTE
+- O pacote contém apenas arquivos estáticos do atendimento web; não contém chave secreta Supabase nem chave privada VAPID.
+- A chave pública VAPID é fornecida pelo snapshot do Windows. Se o PDV Windows não estiver atualizado e conectado, a ativação do Push não será concluída.
+- O Windows precisa permanecer ligado e conectado para detectar os eventos e enviar o Push. O serviço de Push do navegador entrega o aviso ao aparelho mesmo quando o site não está aberto na tela.
+- Em iPhone/iPad, o Web Push requer versão compatível do iOS/iPadOS e o site instalado pela opção Compartilhar > Adicionar à Tela de Início. Abra pelo ícone e só então ative o Push.
+- Em segundo plano/tela bloqueada, o som é o padrão do sistema operacional. O site não pode forçar o uso do áudio personalizado nesse modo. Os cinco sons personalizados são usados quando a página está ativa.
+- O volume da página não altera o volume físico do telefone, modo silencioso ou Não Perturbe.
+- Não publique este pacote antes de aplicar a migration e atualizar o Windows, para evitar que a tela ofereça um registro Push que o caixa antigo ainda não reconhece.

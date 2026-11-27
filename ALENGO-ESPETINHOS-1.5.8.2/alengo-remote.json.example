@@ -1,0 +1,8 @@
+{
+  "enabled": false,
+  "projectUrl": "https://cqjorvhkiaqbpalizzvf.supabase.co",
+  "publishableKey": "sb_publishable_sHxw8vjb3oiXJFO-mNNONQ_E-jAZ2En",
+  "secretKeyProtected": "PREENCHIDO PELO SCRIPT CONFIGURAR-ALENGO-REMOTO.ps1",
+  "pollIntervalMs": 3000,
+  "snapshotIntervalMs": 10000
+}

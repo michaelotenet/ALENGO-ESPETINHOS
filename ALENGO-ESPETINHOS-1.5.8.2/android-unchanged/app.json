@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "Alengo Espetinhos",
+    "slug": "alengo-pedidos",
+    "scheme": "alengopedidos",
+    "version": "1.3.4",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "bundleIdentifier": "br.alengo.pedidos",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Permitir conexão com o caixa ALENGO ESPETINHOS na mesma rede Wi-Fi.",
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        }
+      },
+      "buildNumber": "134"
+    },
+    "android": {
+      "package": "br.alengo.pedidos",
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_WIFI_STATE",
+        "POST_NOTIFICATIONS"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#120a07"
+      },
+      "versionCode": 134
+    },
+    "icon": "./assets/icon.png",
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./assets/pedido_pronto.wav"
+          ],
+          "defaultChannel": "pedido-pronto"
+        }
+      ]
+    ],
+    "owner": "unisoftwares",
+    "extra": {
+      "eas": {
+        "projectId": "62fe576b-41a5-460b-b02a-678fc38783b2"
+      }
+    }
+  }
+}

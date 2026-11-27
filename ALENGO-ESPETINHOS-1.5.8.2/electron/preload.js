@@ -1,0 +1,43 @@
+const {contextBridge,ipcRenderer}=require('electron');
+ipcRenderer.on('session:lock',()=>window.dispatchEvent(new Event('session:lock')));
+const call=(channel,...args)=>ipcRenderer.invoke(channel,...args).then(r=>{if(r&&r.ok===false)throw Object.assign(new Error(r.error?.message||'Erro'),r.error||{});if(r&&r.ok===true)return r.data;return r}).catch(e=>{throw new Error(e?.message||'Erro de comunicação com o aplicativo')});
+contextBridge.exposeInMainWorld('api',{
+ dashboard:()=>call('dashboard'),
+ restaurant:{tables:()=>call('restaurant:tables'),orders:id=>call('restaurant:orders',id),history:date=>call('restaurant:orders-history',date),catalog:()=>call('restaurant:catalog'),saveTable:x=>call('restaurant:table-save',x),deleteTable:id=>call('restaurant:table-delete',id),create:x=>call('restaurant:order-create',x),pay:x=>call('restaurant:order-pay',x),reprint:id=>call('restaurant:reprint',id),printers:()=>call('restaurant:printers'),settings:()=>call('restaurant:settings'),setPrinter:x=>call('restaurant:printer-set',x),setReceiptPrinter:x=>call('restaurant:receipt-printer-set',x),revokeMobile:()=>call('restaurant:revoke-mobile'),ready:id=>call('restaurant:order-ready',id),itemDelivery:x=>call('restaurant:item-delivery',x),cancel:x=>call('restaurant:order-cancel',x),mobileCancellations:()=>call('restaurant:mobile-cancellations'),mobileOrders:()=>call('restaurant:mobile-orders'),notifications:()=>call('restaurant:notifications'),ackNotifications:ids=>call('restaurant:notifications-ack',ids),receipt:id=>call('restaurant:receipt',id)},
+ ux:{overview:()=>call('ux:overview'),notifications:()=>call('ux:notifications'),search:q=>call('ux:search',q),diagnostics:()=>call('ux:diagnostics')},
+ activity:{list:n=>call('activity:list',n),operators:()=>call('activity:operators'),export:n=>call('activity:export',n)},
+ settings:{get:()=>call('settings:get'),set:s=>call('settings:set',s)},
+ scale:{settings:()=>call('scale:settings'),status:()=>call('scale:status'),listPorts:()=>call('scale:list-ports'),test:()=>call('scale:test'),capture:()=>call('scale:capture')},
+ auth:{login:c=>call('auth:login',c),logout:()=>call('auth:logout'),changePassword:c=>call('auth:change-password',c),changeAdminPassword:p=>call('auth:change-admin-password',p)},
+ categories:{list:()=>call('categories:list'),save:c=>call('categories:save',c),delete:id=>call('categories:delete',id),restore:id=>call('categories:restore',id)},
+ notes:{list:q=>call('notes:list',q),save:n=>call('notes:save',n),delete:id=>call('notes:delete',id),restore:id=>call('notes:restore',id)},
+ operators:{list:()=>call('operators:list'),save:o=>call('operators:save',o),delete:id=>call('operators:delete',id)},
+ logo:{choose:()=>call('image:choose')},
+ products:{list:(q,c)=>call('products:list',q,c),save:p=>call('products:save',p),delete:id=>call('products:delete',id),restore:id=>call('products:restore',id),bulkCategory:x=>call('products:bulk-category',x),barcode:code=>call('products:barcode',code)},
+ internalItems:{list:(q,c)=>call('internal-items:list',q,c),save:x=>call('internal-items:save',x),delete:id=>call('internal-items:delete',id),recipe:id=>call('internal-items:recipe',id),saveRecipe:x=>call('internal-items:recipe-save',x),move:x=>call('internal-items:move',x)},
+ analytics:{sales:r=>call('analytics:sales',r),stock:r=>call('analytics:stock',r),profit:r=>call('analytics:profit',r)},
+ goals:{get:()=>call('goals:get'),save:x=>call('goals:save',x),progress:r=>call('goals:progress',r)},
+ stock:{move:m=>call('stock:move',m)},
+ kits:{list:c=>call('kits:list',c),save:k=>call('kits:save',k),delete:id=>call('kits:delete',id)},
+ suppliers:{list:q=>call('suppliers:list',q),save:s=>call('suppliers:save',s),delete:id=>call('suppliers:delete',id)},
+ customers:{list:()=>call('customers:list'),save:c=>call('customers:save',c),ledger:id=>call('customers:ledger',id),payment:p=>call('customers:payment',p)},
+ sales:{list:d=>call('sales:list',d),detail:id=>call('sales:detail',id),create:s=>call('sales:create',s),cancel:x=>call('sales:cancel',x),print:id=>call('sales:print',id)},
+ quotes:{
+  list:()=>call('quotes:list'),
+  detail:id=>call('quotes:detail',id),
+  create:q=>call('quotes:create',q),
+  update:(id,q)=>call('quotes:update',id,q),
+  delete:id=>call('quotes:delete',id),
+  setStatus:(id,status)=>call('quotes:set-status',id,status),
+  pdf:id=>call('quotes:pdf',id)
+},
+ fiscal:{list:()=>call('fiscal:list'),pendingSales:()=>call('fiscal:pending-sales'),issue:id=>call('fiscal:issue',id),settings:()=>call('fiscal:settings'),saveSettings:s=>call('fiscal:save-settings',s),chooseCertificate:()=>call('fiscal:choose-certificate'),certificateInfo:p=>call('fiscal:certificate-info',p),testStatus:()=>call('fiscal:test-status'),cancel:(id,reason)=>call('fiscal:cancel',id,reason),danfe:id=>call('fiscal:danfe',id),contingency:(id,reason)=>call('fiscal:contingency',id,reason),transmitPending:()=>call('fiscal:transmit-pending')},
+ cash:{transactions:x=>call('cash:transactions',x),current:()=>call('cash:current'),open:x=>call('cash:open',x),close:x=>call('cash:close',x),withdraw:x=>call('cash:withdraw',x),history:r=>call('cash:history',r)},
+ agenda:{list:o=>call('agenda:list',o),create:a=>call('agenda:create',a),update:a=>call('agenda:update',a),reconcile:()=>call('agenda:reconcile'),dueAlerts:()=>call('agenda:due-alerts'),attendance:x=>call('agenda:attendance',x),completePayment:x=>call('agenda:complete-payment',x),deliverySales:customerId=>call('agenda:delivery-sales',customerId),completeDelivery:x=>call('agenda:complete-delivery',x),completeTask:x=>call('agenda:complete-task',x),report:o=>call('agenda:report',o)},
+ reports:{daily:d=>call('reports:daily',d),monthly:m=>call('reports:monthly',m),export:o=>call('reports:export',o)},
+ backup:{create:()=>call('backup:create'),restore:()=>call('backup:restore'),schedule:c=>call('backup:schedule',c)},
+ operational:{reset:confirmation=>call('operational:reset',confirmation)},
+ email:{settings:()=>call('email:settings'),saveSettings:s=>call('email:save-settings',s),chooseAttachments:()=>call('email:choose-attachments'),send:x=>call('email:send',x),test:()=>call('email:test')},
+ internet:{search:q=>call('internet:search',q)},
+ theme:{onChange:fn=>ipcRenderer.on('theme:set',(_,theme)=>fn(theme))}
+});

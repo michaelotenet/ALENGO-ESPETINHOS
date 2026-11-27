@@ -1,0 +1,75 @@
+/* Paleta extraída visualmente da referência: carvão, brasa, laranja e ouro. */
+.app.theme-alengo,.login-screen.theme-alengo{--theme:#f4771c;--accent:#ff921e;--bg:#08090a;--panel:#131415;--panel2:#1d1a17;--text:#fff7eb;--muted:#cbb8a2;--line:#51321f;--input:#130e0a;--border:#54301b;--shadow:rgba(0,0,0,.55);background:#090909;color:#fff7eb}
+.app.theme-alengo aside{background:linear-gradient(180deg,#16100d,#090909 65%);border-right:1px solid #613119}
+.app.theme-alengo main,.app.theme-alengo .pagehost,.app.theme-alengo header{background:#0a0909;color:#fff7eb}
+.app.theme-alengo .panel,.app.theme-alengo .modal{background:#151312;color:#fff7eb;border-color:#57331c}
+.app.theme-alengo input,.app.theme-alengo select,.app.theme-alengo textarea,.app.theme-alengo .search{background:#160f0c;color:#fff7eb;border:1px solid #664025}
+.app.theme-alengo .primary,.login-screen.theme-alengo .primary{background:linear-gradient(120deg,#e84a16,#ffa12e);color:#170b04;font-weight:750}
+.app.theme-alengo .brand b,.app.theme-alengo h1,.app.theme-alengo h2,.app.theme-alengo h3{color:#ffae38}
+.app.theme-alengo .logoMark{background:#211109;border:2px solid #ff8e22;border-radius:50%}
+.app.theme-alengo nav button{color:#fff2e0}.app.theme-alengo nav button.active{background:#4b1e0f;color:#ffce83;border-left:3px solid #ff7b22}
+.login-screen.theme-alengo{background:radial-gradient(circle at 50% 0%,#562010,#08090a 55%)}
+.alengo-table-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:10px;margin-top:15px}
+.alengo-table{background:#191512;border:1px solid #5c3a28;color:#f7f0e6;padding:16px;min-height:110px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.alengo-table.occupied{border-color:#dc5c20}.alengo-table.active{outline:2px solid #ff9c37}.alengo-table strong{font-size:18px}.alengo-table small{font-size:12px}
+.alengo-inline{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:15px}.alengo-inline input{min-width:200px}.alengo-pin{font-size:25px;letter-spacing:6px;color:#ffaf3b}
+.alengo-order{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid #58402b;padding:12px 0}.alengo-order>div{display:grid;gap:4px}.alengo-order small{color:#ccc}
+.alengo-payment,.alengo-create{border-top:1px solid #58402b;margin-top:20px;padding-top:16px}.alengo-products{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.alengo-item{display:grid;grid-template-columns:minmax(120px,1fr) 72px minmax(130px,2fr) auto;gap:10px;margin:9px 0;align-items:center}.alengo-item input{min-width:0;width:100%}
+@media(max-width:900px){.alengo-item{grid-template-columns:1fr 62px}.alengo-item input:nth-of-type(2){grid-column:1/3}}
+
+/* Modal no portal, fora do elemento .app, preserva a paleta correta. */
+.ux-modal-overlay.theme-alengo .modal{background:#151312!important;color:#fff4e5!important;border-color:#77401d!important}
+.ux-modal-overlay.theme-alengo .modal input,.ux-modal-overlay.theme-alengo .modal textarea,.ux-modal-overlay.theme-alengo .modal select{background:#1b130f!important;color:#fff4e5!important;border-color:#77401d!important}
+.ux-modal-overlay.theme-alengo .modal select option{color:#fff4e5;background:#1b130f}
+.ux-modal-overlay.theme-alengo .modal label,.ux-modal-overlay.theme-alengo .modal h2{color:#fff4e5}
+.ux-modal-overlay.theme-encruza .modal,.ux-modal-overlay.theme-encruza .modal input,.ux-modal-overlay.theme-encruza .modal select,.ux-modal-overlay.theme-encruza .modal textarea{background:#090909!important;color:#fafafa!important;border-color:#333!important}
+.ux-modal-overlay.theme-encruza .modal select option{background:#090909;color:#fafafa}
+.logoMark img,.login-logo img{border-radius:50%;object-fit:cover;object-position:50% 67%}
+
+/* Alengo 1.3.3: legibilidade do login sem afetar o tema Onix. */
+.login-screen.theme-alengo .login-card{background:linear-gradient(175deg,#21150f,#100e0d);border:1px solid #7f4625;color:#f9eadb;box-shadow:0 18px 45px rgba(0,0,0,.55)}
+.login-screen.theme-alengo .login-card h1{color:#ff9e42!important}
+.login-screen.theme-alengo .login-card p,.login-screen.theme-alengo .login-card .login-about{color:#f4b77a!important}
+.login-screen.theme-alengo .login-card label{color:#ffb66f!important;font-weight:650}
+.login-screen.theme-alengo .login-card input{background:#20130e!important;border:1px solid #aa5b2b!important;color:#fff3e7!important;caret-color:#ffb067;color-scheme:dark}
+.login-screen.theme-alengo .login-card input::placeholder{color:#d5a37c!important;opacity:1}
+.login-screen.theme-alengo .login-card .login-error{color:#ffb2a5!important}
+.app.role-operator:not(.sidebar-collapsed) aside nav{padding:12px 9px;display:flex;flex-direction:column;gap:8px}
+.app.role-operator:not(.sidebar-collapsed) aside nav .nav-group{gap:8px;margin-bottom:15px}
+.app.role-operator:not(.sidebar-collapsed) aside nav button{min-height:47px;padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:14px;border-radius:9px;width:100%;text-align:left}
+.app.role-operator.sidebar-collapsed aside nav button{min-height:49px;min-width:45px}
+
+/* Preparo parcial por item — acompanhamento das unidades já levadas à mesa. */
+.alengo-item-delivery{display:grid;gap:7px;margin:9px 0 4px;padding:10px;border:1px solid rgba(221,160,91,.28);border-radius:10px;background:rgba(24,20,17,.58);min-width:0}
+.alengo-item-delivery-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#f0d2aa;font-size:12px}
+.alengo-item-delivery-summary span{color:#d6c5b2;font-size:11px}
+.alengo-item-delivery-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:7px;border-top:1px solid rgba(221,160,91,.14);min-width:0}
+.alengo-item-delivery-name{display:grid;gap:2px;min-width:0}
+.alengo-item-delivery-name b{overflow-wrap:anywhere;color:#f3e9dd;font-size:12px}
+.alengo-item-delivery-name small{color:#bfb0a0;font-size:11px;overflow-wrap:anywhere}
+.alengo-item-delivery-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.alengo-ready-row-main{min-width:0;flex:1}
+.alengo-ready-row{align-items:flex-start}
+@media(max-width:760px){.alengo-item-delivery-row{align-items:flex-start;flex-direction:column}.alengo-item-delivery-actions{align-self:flex-end}.alengo-ready-row{flex-direction:column}}
+
+/* ALENGO 1.5.8 — mesas compactas e adaptação a telas Windows */
+.alengo-tables-view{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(108px,10vw,142px),1fr));gap:9px;align-items:stretch}
+.alengo-tables-view .alengo-table{min-width:0;min-height:88px;padding:10px 8px;gap:4px;border-radius:11px}
+.alengo-tables-view .alengo-table strong{font-size:clamp(14px,1.15vw,16px);line-height:1.15}
+.alengo-tables-view .alengo-table small{font-size:11px;line-height:1.25}
+.alengo-tables-view .alengo-pickup-tile{min-height:88px}
+@media(max-width:1440px) and (max-height:850px) and (orientation:landscape){
+  .app{min-height:100vh;height:100vh;overflow:hidden}
+  main{min-height:0;overflow:auto}
+  .pagehost{padding:14px 16px}
+  .alengo-tables-view{grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}
+  .alengo-tables-view .alengo-table{min-height:78px;padding:8px 6px}
+  .toolbar{margin-bottom:10px;gap:10px}
+}
+@media(max-width:1100px) and (orientation:landscape){
+  aside{width:190px;padding:12px 8px}
+  main{margin-left:190px;width:calc(100% - 190px)}
+  header{height:66px;padding:0 16px}
+  header h1{font-size:19px}
+  .pos{grid-template-columns:minmax(0,1.25fr) minmax(290px,.8fr);gap:12px}
+}
