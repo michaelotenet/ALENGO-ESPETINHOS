@@ -1,0 +1,76 @@
+ALENGO ESPETINHOS — ATENDIMENTO WEB 1.5.9
+Atualização exclusiva da interface do site (Cloudflare Pages).
+
+O QUE MUDOU
+- Pedidos ativos agora aparecem em cartões compactos expansíveis. O resumo mostra número, mesa/retirada, cliente, total, andamento e quantidade pronta/entregue.
+- Itens e ações de cada pedido aparecem ao expandir o cartão.
+- Histórico de pedidos começa recolhido e pode ser aberto quando necessário.
+- Central de notificações usa linhas compactas expansíveis; a mensagem completa aparece ao abrir cada aviso.
+- Configurações de som, vibração e Push ficam recolhidas inicialmente para reduzir a rolagem.
+- Layout responsivo revisto para retrato e paisagem em celulares e tablets. Em paisagem, listas aproveitam a largura com duas colunas quando há espaço.
+- O botão “Voltar” e o botão Voltar físico/gesto do celular ou tablet percorrem as telas anteriores do site, sem recarregar a página.
+- A navegação respeita fluxos como mesas, catálogo, carrinho e pagamento; ao concluir um pedido ou encerrar a sessão, o histórico interno é reiniciado para evitar reabrir etapas antigas.
+- O Service Worker recebeu nova versão de cache para forçar a atualização dos arquivos estáticos.
+
+PUBLICAÇÃO
+1. Esta atualização altera somente o atendimento web. Não atualize nem substitua arquivos do PDV Windows ou do aplicativo Android.
+2. A migration SQL do Web Push já foi executada anteriormente; não é necessário executá-la novamente para esta atualização.
+3. No projeto Cloudflare Pages existente, publique/substitua TODO o conteúdo deste pacote na raiz do site.
+4. Depois da publicação, feche e reabra o site. Se algum aparelho continuar exibindo a versão anterior, feche todas as abas do atendimento e abra novamente; o novo Service Worker deverá baixar o shell atualizado.
+5. Teste no celular em retrato e paisagem e, se disponível, em um tablet:
+   - usar o botão superior “Voltar” e o botão/gesto Voltar do aparelho para percorrer as telas anteriores;
+   - abrir e recolher pedidos;
+   - expandir um pedido e atualizar uma quantidade;
+   - abrir e recolher o histórico;
+   - abrir uma notificação para ler a mensagem completa;
+   - testar os controles de som e Push;
+   - navegar por início, mesas, catálogo, carrinho, pedidos e notificações.
+
+PRESERVAÇÃO E SEGURANÇA
+- O pacote contém somente arquivos estáticos do atendimento web.
+- Não contém a chave secreta do Supabase nem a chave privada VAPID.
+- Não altera a estrutura do banco, autenticação, permissões, pagamentos, filas, impressão ou regras de sincronização.
+- O PDV Windows continua sendo responsável por validar e registrar pedidos remotos e por realizar as impressões.
+- A versão Android 1.3.4 e o aplicativo Windows permanecem inalterados.
+
+
+MELHORIAS 1.5.8.5
+- Painel inicial compacto com resumo de pedidos em andamento, parciais e prontos.
+- Navegação inferior com contadores de pedidos ativos e avisos não lidos.
+- Busca rápida de mesas por número ou responsável; busca de produtos e clientes permanece no cardápio.
+- Indicador de conexão mais claro e aviso quando o aparelho fica sem internet.
+- Rascunho do pedido continua disponível para retomada na tela inicial.
+- Ajustes opcionais de tamanho do texto, contraste e área de toque em seção recolhível.
+- Preferências de acessibilidade salvas somente neste aparelho.
+
+PUBLICAÇÃO: substitua os arquivos do site pelos arquivos deste pacote no Cloudflare Pages. Não é necessária nova migração SQL. O aplicativo Android e o instalador Windows não fazem parte deste ZIP.
+
+TESTES RECOMENDADOS: testar navegação Voltar do aparelho; buscar mesa por número e responsável; localizar cliente e produto no cardápio; conferir contadores de pedidos/avisos; desligar e religar a internet; testar os três ajustes de acessibilidade em retrato e paisagem.
+
+
+MELHORIAS 1.5.9
+- Edição rápida do carrinho: controles de quantidade mais acessíveis, remoção individual de itens com confirmação e edição de observações sem sair da comanda.
+- Identificação visual das mesas: estados Livre, Em atendimento, Parcial e Itens entregues, com cores discretas e legenda compacta. O estado é calculado a partir dos pedidos e itens disponíveis no snapshot do operador; dados incompletos não são classificados indevidamente como totalmente entregues.
+- Proteção contra pedidos duplicados: bloqueio de toques simultâneos, confirmação resumida antes do envio, chave de idempotência preservada em falhas ambíguas e bloqueio de edição enquanto o pedido aguarda confirmação.
+- Recuperação automática: rascunho e chave do pedido permanecem salvos neste aparelho; a fila remota existente continua tentando sincronizar ao recuperar a internet, ao reabrir o atendimento e periodicamente enquanto a sessão estiver ativa. Ao restaurar um pedido pendente, o site abre diretamente o carrinho bloqueado até a confirmação do Windows.
+- Confirmação inteligente: diálogos compactos para envio de comanda, remoção de produtos, descarte de rascunhos e encerramento de acesso. Ações rotineiras de quantidade não exigem confirmação, exceto quando removem a última unidade.
+- Cache do Service Worker atualizado para v13.
+
+PUBLICAÇÃO 1.5.9
+1. Extraia o ZIP e publique todo o conteúdo na raiz do projeto existente no Cloudflare Pages, substituindo os arquivos da versão anterior.
+2. Não publique arquivos deste pacote no PDV Windows ou no aplicativo Android.
+3. Não é necessária nova migration SQL para estas alterações de interface e para o reaproveitamento da fila remota existente.
+4. Após publicar, feche e reabra o site instalado. Se necessário, feche as abas do atendimento para o Service Worker v13 assumir o cache atualizado.
+
+TESTES RECOMENDADOS
+- Adicionar produtos, alterar quantidades, editar observações e remover um item.
+- Tentar remover a última unidade e cancelar a confirmação para conferir que o item permanece.
+- Enviar uma comanda e tocar repetidamente no botão durante a confirmação/envio; deve ser criada apenas uma operação.
+- Desligar a internet antes de enviar, conferir o aviso de pendência, fechar e reabrir o atendimento e depois religar a internet; confirmar que a mesma operação é sincronizada sem duplicação.
+- Conferir as cores das mesas livres, ocupadas, parcialmente entregues e totalmente entregues.
+- Cancelar os diálogos e confirmar que nenhuma ação destrutiva ocorre.
+
+OBSERVAÇÕES TÉCNICAS
+- A confirmação definitiva e a gravação da comanda continuam sendo feitas pelo PDV Windows. Uma operação na fila offline não é exibida como pedido confirmado.
+- A proteção no cliente utiliza a chave idempotente já prevista no contrato de pedidos; o Windows/Supabase deve continuar respeitando essa chave para garantir idempotência ponta a ponta.
+- O mecanismo de fila e sincronização remota já existente foi preservado e reforçado no fluxo de restauração.
